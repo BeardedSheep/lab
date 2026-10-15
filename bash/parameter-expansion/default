@@ -1,0 +1,5 @@
+#!/bin/bash
+
+name="newbz"
+echo " Hello, ${name:-User}"
+echo "$name"
