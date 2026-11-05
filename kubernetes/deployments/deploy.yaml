@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: newbz-deployment
+  name: newbz-deployment
+spec:
+  replicas: 10
+  selector:
+    matchLabels:
+      app: newbz-deployment
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+  template:
+    metadata:
+      labels:
+        app: newbz-deployment
+    spec:
+      containers:
+      - image: httpd:alpine3.18
+        name: httpd
+        command: ["/bin/bash", "-c"] # Overide the default command
+        args: ["sleep 5; exit 1"] # Sleep for 30sec then exit with an error

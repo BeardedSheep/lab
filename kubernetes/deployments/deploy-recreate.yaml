@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: newbz-deployment
+  name: newbz-deployment
+spec:
+  replicas: 10
+  selector:
+    matchLabels:
+      app: newbz-deployment
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: newbz-deployment
+    spec:
+      containers:
+      - image: httpd:alpine3.18
+        name: httpd
